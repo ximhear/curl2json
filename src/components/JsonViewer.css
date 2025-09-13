@@ -12,11 +12,49 @@
   flex: 1;
 }
 
-.json-viewer h3 {
-  margin-top: 0;
+.json-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
+}
+
+.json-viewer h3 {
+  margin: 0;
   color: #569cd6;
   font-size: 16px;
+}
+
+.copy-button {
+  background: #569cd6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.copy-button:hover:not(:disabled) {
+  background: #4e87c7;
+  transform: translateY(-1px);
+}
+
+.copy-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.copy-button.copied {
+  background: #28a745;
+}
+
+.copy-button.copying {
+  background: #ffc107;
+  color: #000;
 }
 
 .json-viewer.error {

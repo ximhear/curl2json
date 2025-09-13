@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './JsonViewer.css';
 
 interface JsonViewerProps {
@@ -7,10 +7,29 @@ interface JsonViewerProps {
 }
 
 export const JsonViewer: React.FC<JsonViewerProps> = ({ data, error }) => {
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copying' | 'copied'>('idle');
+
+  const handleCopyToClipboard = async () => {
+    if (!data) return;
+    
+    try {
+      setCopyStatus('copying');
+      const jsonString = JSON.stringify(data, null, 2);
+      await navigator.clipboard.writeText(jsonString);
+      setCopyStatus('copied');
+      setTimeout(() => setCopyStatus('idle'), 2000);
+    } catch (err) {
+      console.error('Failed to copy to clipboard:', err);
+      setCopyStatus('idle');
+    }
+  };
+
   if (error) {
     return (
       <div className="json-viewer error">
-        <h3>Error</h3>
+        <div className="json-viewer-header">
+          <h3>Error</h3>
+        </div>
         <pre>{error}</pre>
       </div>
     );
@@ -91,7 +110,18 @@ export const JsonViewer: React.FC<JsonViewerProps> = ({ data, error }) => {
 
   return (
     <div className="json-viewer">
-      <h3>Response</h3>
+      <div className="json-viewer-header">
+        <h3>Response</h3>
+        <button 
+          className={`copy-button ${copyStatus}`}
+          onClick={handleCopyToClipboard}
+          disabled={copyStatus === 'copying'}
+        >
+          {copyStatus === 'idle' && '📋 Copy'}
+          {copyStatus === 'copying' && '⏳ Copying...'}
+          {copyStatus === 'copied' && '✅ Copied!'}
+        </button>
+      </div>
       <pre className="json-content">
         {formatJson(data)}
       </pre>
