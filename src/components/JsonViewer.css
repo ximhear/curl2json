@@ -1,0 +1,96 @@
+.json-viewer {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid #333;
+  flex: 1;
+}
+
+.json-viewer h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #569cd6;
+  font-size: 16px;
+}
+
+.json-viewer.error {
+  background: #2d1b1b;
+  border-color: #d73737;
+}
+
+.json-viewer.error h3 {
+  color: #f48771;
+}
+
+.json-viewer.empty {
+  background: #2d2d30;
+  color: #808080;
+  text-align: center;
+  padding: 40px;
+}
+
+.json-content {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.json-string {
+  color: #ce9178;
+}
+
+.json-number {
+  color: #b5cea8;
+}
+
+.json-boolean {
+  color: #569cd6;
+}
+
+.json-null {
+  color: #569cd6;
+}
+
+.json-key {
+  color: #9cdcfe;
+}
+
+.json-colon {
+  color: #d4d4d4;
+}
+
+.json-comma {
+  color: #d4d4d4;
+}
+
+.json-bracket {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.json-array,
+.json-object {
+  display: block;
+}
+
+.json-array-content,
+.json-object-content {
+  display: block;
+}
+
+.json-array-item,
+.json-property {
+  display: block;
+  position: relative;
+}
+
+.json-property:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
